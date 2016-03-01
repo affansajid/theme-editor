@@ -24,21 +24,30 @@ connection.connect(function(err) {
 
 // Close the connection
 
-connection.end(function(err) {
-	// The connection is terminated now
-	if (err) {
-		console.error(err.status);
-	}
-	else {  		
-		console.log("disconnected now");
-	}
-	
+function closeDBConnection() {
+	connection.end(function(err) {
+		// The connection is terminated now
+		if (err) {
+			console.error(err.status);
+		}
+		else {  		
+			console.log("disconnected now");
+		}
+		
+	});	
+}
+
+/* GET templates. */
+
+router.get('/', function(req, res, next) {
+	connection.query("SELECT * FROM `templates`", function(err, results) {
+		// connected! (unless `err` is set)
+		var rows = results;
+		res.render('index', {templates: rows });  
+	});
+	closeDBConnection();    
 });
 
-/* GET home page. */
 
-router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' });
-});
 
 module.exports = router;
