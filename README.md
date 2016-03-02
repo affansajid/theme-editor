@@ -23,4 +23,22 @@ The project is still under active development, and more features are expected to
 $ npm install && bower install
 ```
 
+## Getting Started
+
+Add mysql database credentials in **routes/index.js**
+
+```
+var connection = mysql.createConnection({
+  host     : '127.0.0.1',
+  user     : '',
+  password : '', 
+  database : '' // database name
+});
+```
+
+```
+$ npm start
+```
+
+
 Developing...

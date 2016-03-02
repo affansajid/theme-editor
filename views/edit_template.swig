@@ -19,3 +19,20 @@
 
 {% endblock %}
 
+{% block scripts %}
+{% parent %}
+<script type="text/javascript" src="/ace/ace.js"></script>
+<script type="text/javascript" src="/ace/theme-monokai.js"></script>
+<script type="text/javascript" src="/ace/mode-html.js"></script>
+<script type="text/javascript" src="/ace/mode-css.js"></script>
+<script type="text/javascript" src="/ace/mode-javascript.js"></script>
+<script type="text/javascript" src="/ace/mode-json.js"></script>
+
+<script type="text/javascript">
+
+	var editor = ace.edit("editor");
+	editor.setTheme("ace/theme/monokai");
+	editor.getSession().setMode("ace/mode/html");
+
+</script>
+{% endblock %}
