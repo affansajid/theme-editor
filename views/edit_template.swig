@@ -5,6 +5,13 @@
 
 {% block content %}
 
+<div>
+	<nav class="navigation">
+		<ul>
+			<li><a href="/" class="btn btn-success">Save</a></li>
+		</ul>	
+	</nav>
+</div>
 <div class="container-fluid">
 	<div class="row">
 		<div class="sm-12 md-8 lg-8">

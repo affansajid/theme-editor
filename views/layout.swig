@@ -9,12 +9,20 @@
 	<title>{% block title %}Theme Editor{% endblock %}</title>
 	{% block head %}
 	<link rel="stylesheet" href="/css/style.css">
+	<link href='https://fonts.googleapis.com/css?family=Montserrat|Roboto:400,400italic,500,700' rel='stylesheet' type='text/css'>
 	{% endblock %}
 </head>
 
 
 <body>
-  {% block content %}{% endblock %}
+	<header>
+		<nav class="navigation">
+			<ul>
+				<li><a href="/">Themes</a></li>
+			</ul>	
+		</nav>
+	</header>
+  	{% block content %}{% endblock %}
 </body>
 
 {% block scripts %}

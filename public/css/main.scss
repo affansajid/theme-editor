@@ -1,7 +1,39 @@
+body {
+	font-family: 'Roboto', sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Montserrat', sans-serif;	
+}
+
+.navigation {
+	background: #000;
+	color: #fff;
+	padding: 15px;
+
+	li {
+		list-style-type: none;
+
+		a {
+			color: #fff;
+			text-transform: uppercase;
+		}
+	}
+}
+
+.btn {
+
+	& .btn-success {
+		background-color: #238000;
+		border-color: #238000;
+	}
+
+}
+
 #editor {
     height: 100%;
     position: absolute;
-    top: 0;
+    top: 132px;
     bottom: 0;
     z-index: 111;
     left: 0;
