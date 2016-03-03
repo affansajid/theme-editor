@@ -10,16 +10,18 @@
 		<div class="small-12 medium-4 large-4">
 			<div class="files-list-wrapper">
 				<div class="files-list">
-					{% for t in themes %}
+					{% for t in templates %}
 					<div class="file-entry">
-						<a class="file-link" href="/theme/{{ t.id }}">
-							<div class="img-text-wrapper">
-								<img class="img-responsive" width="400" height="240" src="data:image/jpeg;charset=utf-8;base64,{{ t.image_preview }}">
-								<h3>{{ t.name }}</h3>
-							</div>								
-						</a>	
+						<a class="file-link" href="/theme/{{ t.theme_asset_id }}/template/{{ t.id }}/edit">{{ t.template_name }}</a>
 					</div>
 					{% endfor %}					
+				</div>
+			</div>
+		</div>
+		<div class="small-12 medium-8 large-8">
+			<div class="file-contents-wrapper">
+				<div class="file-content">
+					<code><pre>{{ templates[0].content }}</pre></code>
 				</div>
 			</div>
 		</div>

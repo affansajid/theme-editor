@@ -34,20 +34,34 @@ process.on('SIGINT', function() {
 })
 
 
-/* GET templates. */
+/* GET Themes. */
 
 router.get('/', function(req, res, next) {
-	connection.query("SELECT * FROM `templates`", function(err, results) {
+	var q = "SELECT * FROM `theme_assets`";
+
+	connection.query(q, function(err, results) {
 		// connected! (unless `err` is set)
 		var rows = results;
-		res.render('index', {templates: rows });  
+		res.render('index', {themes: rows });  
+	});
+});
+
+/* GET templates. */
+
+router.get('/theme/:theme_id', function(req, res, next) {
+	var q = "SELECT * FROM `templates` WHERE theme_asset_id = " + req.params.theme_id;
+
+	connection.query(q, function(err, results) {
+		// connected! (unless `err` is set)
+		var rows = results;
+		res.render('show_theme', {templates: rows });  
 	});
 });
 
 /* GET single template file. */
 
-router.get('/template/:id/edit', function(req, res, next) {
-	var q = "SELECT * FROM `templates` WHERE id = " + req.params.id;
+router.get('/theme/:theme_id/template/:template_id/edit', function(req, res, next) {
+	var q = "SELECT * FROM `templates` WHERE id = " + req.params.template_id;
 
 	connection.query(q, function(err, results) {
 		// connected! (unless `err` is set)
