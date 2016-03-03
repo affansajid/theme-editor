@@ -61,15 +61,30 @@ router.get('/theme/:theme_id', function(req, res, next) {
 /* GET single template file. */
 
 router.get('/theme/:theme_id/template/:template_id/edit', function(req, res, next) {
-	var q = "SELECT * FROM `templates` WHERE id = " + req.params.template_id;
+	var q = "SELECT * FROM `templates` WHERE (theme_asset_id = " + req.params.theme_id + " AND id = " + req.params.template_id + ")";
 
 	connection.query(q, function(err, results) {
 		// connected! (unless `err` is set)
 		var rows = results;
 		res.render('edit_template', {template: rows }); 
-	});  
+	});      
+});
 
-	    
+/* GET Themes. */
+
+router.post('/theme/:theme_id/template/:template_id', function(req, res, next) {
+	var t_content = connection.escape(req.body.content);	
+	var q = "UPDATE `templates` SET `content` = " + t_content + " WHERE (theme_asset_id = " + req.params.theme_id + " AND id = " + req.params.template_id + ")";
+	
+	connection.query(q, function(err, results) {
+		// connected! (unless `err` is set)
+		if (err) {
+			res.status(500).json({message: 'failed to update'});  	
+		}
+		else {
+			res.status(200).json({message: 'sucessfully updated'});  
+		}
+	});
 });
 
 module.exports = router;

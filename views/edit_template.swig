@@ -8,7 +8,7 @@
 <div>
 	<nav class="navigation">
 		<ul>
-			<li><a href="/" class="btn btn-success">Save</a></li>
+			<li><div id="save-template" class="btn btn-success">Save</div></li>
 		</ul>	
 	</nav>
 </div>
@@ -18,6 +18,9 @@
 			<div class="file-contents-wrapper">
 				<div class="file-content">					
 					<div id="editor">{{ template[0].content }}</div>
+					<form id="editor-form">
+						<textarea name="content"></textarea>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -37,9 +40,29 @@
 
 <script type="text/javascript">
 
+	// Ace Editor initialize
 	var editor = ace.edit("editor");
 	editor.setTheme("ace/theme/monokai");
 	editor.getSession().setMode("ace/mode/html");
 
+
+	// Save the template in click
+	$('#save-template').click(function() {
+
+		$('[name="content"]').val(editor.getValue());
+
+	    $.ajax({
+	        url: '/theme/{{ template[0].theme_asset_id }}/template/{{ template[0].id }}',
+	        type: 'post',
+	        dataType: 'json',
+	        data: $('#editor-form').serialize(),
+	        success: function(data) {
+	            console.log(data.message);
+	        },
+	        error: function(data) {
+	            console.log(data.message);
+	        }	
+		});
+	});	
 </script>
 {% endblock %}
