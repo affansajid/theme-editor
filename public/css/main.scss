@@ -1,5 +1,7 @@
 body {
 	font-family: 'Roboto', sans-serif;
+	/*background-color: #272822;*/
+	background-color: #F0EEE7;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -7,9 +9,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .navigation {
-	background: #000;
+	/*background-color: #272822;*/
+	background-color: #333;
 	color: #fff;
-	padding: 15px;
+	padding: 20px;
 
 	li {
 		list-style-type: none;
@@ -23,19 +26,73 @@ h1, h2, h3, h4, h5, h6 {
 
 .btn {
 
-	& .btn-success {
+	border-radius: 3px;
+
+	&.btn-success {
 		background-color: #238000;
 		border-color: #238000;
+		color: #fff;
 	}
 
 }
 
+.nav-btns {
+
+	border-bottom: 5px solid #272822;
+
+	.title {
+		margin: 0;
+		float: left;
+	}
+
+	#save-template {
+		float: right;
+		font-size: 16px;
+	}
+
+	.template-message {
+		float: right;
+		padding: 10px;
+		margin: 0;
+	}
+}
+
+/* Main Page */
+
+.themes-container {
+	padding-top: 150px;
+}
+
+.theme-link {
+	display: block;
+	border-radius: 3px;
+	box-shadow: 0 0 2px 1px rgba(0,0,0,0.25);
+	background-color: #fff;
+
+	img {
+		border-top-left-radius: 3px;
+		border-top-right-radius: 3px;
+	}
+
+	h3 {
+		margin: 0;
+		padding: 10px;
+	}
+}
+
+
+/* Edit Template Page */
+
 #editor {
     height: 100%;
     position: absolute;
-    top: 132px;
+    top: 150px;
     bottom: 0;
     z-index: 111;
     left: 0;
     right: 0;	
+}
+
+#editor-form {
+	display: none;
 }
