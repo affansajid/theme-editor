@@ -5,24 +5,20 @@
 
 {% block content %}
 
-<div class="container-fluid">
+<div class="container themes-container">
 	<div class="row">
-		<div class="small-12 medium-4 large-4">
-			<div class="files-list-wrapper">
-				<div class="files-list">
-					{% for t in themes %}
-					<div class="file-entry">
-						<a class="file-link" href="/theme/{{ t.id }}">
-							<div class="img-text-wrapper">
-								<img class="img-responsive" width="400" height="240" src="data:image/jpeg;charset=utf-8;base64,{{ t.image_preview }}">
-								<h3>{{ t.name }}</h3>
-							</div>								
-						</a>	
-					</div>
-					{% endfor %}					
-				</div>
-			</div>
+	{% for t in themes %}
+		<div class="sm-12 md-6 lg-6">					
+			<div class="theme-entry">
+				<a class="theme-link" href="/theme/{{ t.id }}">
+					<div class="img-text-wrapper">
+						<img class="img-responsive" src="data:image/jpeg;charset=utf-8;base64,{{ t.image_preview }}">
+						<h3>{{ t.name }}</h3>
+					</div>								
+				</a>	
+			</div>									
 		</div>
+	{% endfor %}			
 	</div>
 </div>
 

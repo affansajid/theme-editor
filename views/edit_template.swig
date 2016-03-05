@@ -1,28 +1,23 @@
 {% extends 'layout.swig' %}
 
-{% block title %}Edit File | {{ template[0].template_name }}{% endblock %}
-
 
 {% block content %}
 
-<div>
-	<nav class="navigation">
-		<ul>
-			<li><div id="save-template" class="btn btn-success">Save</div></li>
-		</ul>	
+<div class="secondary-nav">
+	<nav class="navigation nav-btns">
+		<h3 class="title">{{ template.template_name }}</h3>
+		<button id="save-template" class="btn btn-success">Save Template</button>
+		<p class="template-message"></p>
+		<div class="clearfix"></div>
 	</nav>
 </div>
 <div class="container-fluid">
-	<div class="row">
-		<div class="sm-12 md-8 lg-8">
-			<div class="file-contents-wrapper">
-				<div class="file-content">					
-					<div id="editor">{{ template[0].content }}</div>
-					<form id="editor-form">
-						<textarea name="content"></textarea>
-					</form>
-				</div>
-			</div>
+	<div class="file-contents-wrapper">
+		<div class="file-content">					
+			<div id="editor">{{ template.content }}</div>
+			<form id="editor-form">
+				<textarea name="content"></textarea>
+			</form>
 		</div>
 	</div>
 </div>
@@ -48,19 +43,22 @@
 
 	// Save the template in click
 	$('#save-template').click(function() {
+		$('#save-template').prop('disabled', true);
 
 		$('[name="content"]').val(editor.getValue());
 
 	    $.ajax({
-	        url: '/theme/{{ template[0].theme_asset_id }}/template/{{ template[0].id }}',
+	        url: '/theme/{{ template.theme_asset_id }}/template/{{ template.id }}',
 	        type: 'post',
 	        dataType: 'json',
 	        data: $('#editor-form').serialize(),
 	        success: function(data) {
-	            console.log(data.message);
+	            $('#save-template').prop('disabled', false);
+	            $('.template-message').html('Saved Successfully...').show().fadeOut(5000);	            
 	        },
 	        error: function(data) {
-	            console.log(data.message);
+	        	$('#save-template').prop('disabled', false);
+	        	$('.template-message').html('Did Not Save').show().fadeOut(5000);
 	        }	
 		});
 	});	

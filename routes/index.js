@@ -53,7 +53,46 @@ router.get('/theme/:theme_id', function(req, res, next) {
 
 	connection.query(q, function(err, results) {
 		// connected! (unless `err` is set)
-		var rows = results;
+		var rows = {};
+
+		var css_files = [];
+		var js_files = [];
+		var includes = [];
+		var custom_pages = [];
+		var regular_files = [];
+
+		// split the files into categories like (js, css, includes...)
+
+		for (var i = results.length - 1; i >= 0; i--) {
+			
+			var t_name = ((results[i].template_name).split("/"))[0];
+			console.log(t_name);
+
+			if (t_name === 'css') {
+				css_files.push(results[i]);
+			}
+			else if (t_name === 'js') {
+				js_files.push(results[i]);
+			}
+			else if (t_name === '_includes') {
+				includes.push(results[i]);
+			}
+			else if (t_name === 'custom_pages') {
+				custom_pages.push(results[i]);
+			}								
+			else {
+				if (t_name !== 'pages.json' && t_name !== 'variables.json') {
+					regular_files.push(results[i]);
+				}					
+			}
+		}
+
+		rows['css_files'] = css_files;
+		rows['js_files'] = js_files;
+		rows['includes'] = includes;
+		rows['custom_pages'] = custom_pages;
+		rows['regular_files'] = regular_files;
+
 		res.render('show_theme', {templates: rows });  
 	});
 });
@@ -65,16 +104,16 @@ router.get('/theme/:theme_id/template/:template_id/edit', function(req, res, nex
 
 	connection.query(q, function(err, results) {
 		// connected! (unless `err` is set)
-		var rows = results;
-		res.render('edit_template', {template: rows }); 
+		var entry = results[0];
+		res.render('edit_template', {template: entry }); 
 	});      
 });
 
-/* GET Themes. */
+/* Save template file */
 
 router.post('/theme/:theme_id/template/:template_id', function(req, res, next) {
 	var t_content = connection.escape(req.body.content);	
-	var q = "UPDATE `templates` SET `content` = " + t_content + " WHERE (theme_asset_id = " + req.params.theme_id + " AND id = " + req.params.template_id + ")";
+	var q = "UPDATE `templates` SET `content` = " + t_content + ", `updated_at` = CURRENT_TIMESTAMP WHERE (theme_asset_id = " + req.params.theme_id + " AND id = " + req.params.template_id + ")";
 	
 	connection.query(q, function(err, results) {
 		// connected! (unless `err` is set)
