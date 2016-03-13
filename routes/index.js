@@ -49,7 +49,7 @@ router.get('/', function(req, res, next) {
 /* GET templates. */
 
 router.get('/theme/:theme_id', function(req, res, next) {
-	var q = "SELECT * FROM `templates` WHERE theme_asset_id = " + req.params.theme_id;
+	var q = "SELECT * FROM `templates` WHERE theme_asset_id = " + req.params.theme_id + " ORDER BY `template_name`";
 
 	connection.query(q, function(err, results) {
 		// connected! (unless `err` is set)
@@ -63,7 +63,7 @@ router.get('/theme/:theme_id', function(req, res, next) {
 
 		// split the files into categories like (js, css, includes...)
 
-		for (var i = results.length - 1; i >= 0; i--) {
+		for (var i = 0; i < results.length; i++) {
 			
 			var t_name = ((results[i].template_name).split("/"))[0];
 			console.log(t_name);
