@@ -5,7 +5,7 @@
 
 <div class="secondary-nav">
 	<nav class="navigation nav-btns">
-		<h3 class="title">{{ template.template_name }}</h3>
+		<h3 class="title">{% if template.folder == 'home' %}/{% else %}/{{ template.folder }}/{% endif %}{{ template.template_name }}</h3>
 		<button id="save-template" class="btn btn-success">Save Template</button>
 		<p class="template-message"></p>
 		<div class="clearfix"></div>
@@ -47,8 +47,9 @@
 
 		$('[name="content"]').val(editor.getValue());
 
+
 	    $.ajax({
-	        url: '/theme/{{ template.theme_asset_id }}/template/{{ template.id }}',
+	        url: '/theme/{{ template.theme }}/{{ template.folder }}/{{ template.template_name }}',
 	        type: 'post',
 	        dataType: 'json',
 	        data: $('#editor-form').serialize(),
