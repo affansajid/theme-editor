@@ -11,31 +11,31 @@
 					<h4>PAGE TYPES</h4>
 					{% for t in templates.regular_files %}
 					<div class="file-entry">
-						<a class="file-link" href="/theme/{{ t.theme_asset_id }}/template/{{ t.id }}/edit">{{ t.template_name }}</a>
+						<a class="file-link" href="/theme/{{ theme }}/home/{{ t }}">{{ t }}</a>
 					</div>
 					{% endfor %}	
 					<h4>CSS/</h4>
 					{% for t in templates.css_files %}
 					<div class="file-entry">
-						<a class="file-link" href="/theme/{{ t.theme_asset_id }}/template/{{ t.id }}/edit">{{ t.template_name | replace('css/', '', 'g') }}</a>
+						<a class="file-link" href="/theme/{{ theme }}/sass/{{ t }}">{{ t }}</a>
 					</div>
 					{% endfor %}
 					<h4>JS/</h4>
 					{% for t in templates.js_files %}
 					<div class="file-entry">
-						<a class="file-link" href="/theme/{{ t.theme_asset_id }}/template/{{ t.id }}/edit">{{ t.template_name | replace('js/', '', 'g') }}</a>
+						<a class="file-link" href="/theme/{{ theme }}/js/{{ t }}">{{ t }}</a>
 					</div>
 					{% endfor %}
 					<h4>INCLUDES/</h4>
 					{% for t in templates.includes %}
 					<div class="file-entry">
-						<a class="file-link" href="/theme/{{ t.theme_asset_id }}/template/{{ t.id }}/edit">{{ t.template_name | replace('_includes/', '', 'g') }}</a>
+						<a class="file-link" href="/theme/{{ theme }}/_includes/{{ t }}">{{ t }}</a>
 					</div>
 					{% endfor %}
 					<h4>CUSTOM PAGES</h4>
 					{% for t in templates.custom_pages %}
 					<div class="file-entry">
-						<a class="file-link" href="/theme/{{ t.theme_asset_id }}/template/{{ t.id }}/edit">{{ t.template_name | replace('custom_pages/', '', 'g') }}</a>
+						<a class="file-link" href="/theme/{{ theme }}/custom_pages/{{ t }}">{{ t }}</a>
 					</div>
 					{% endfor %}						
 				</div>
