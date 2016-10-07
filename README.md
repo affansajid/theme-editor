@@ -15,7 +15,7 @@ The project is still under active development, and more features are expected to
 
 ## Installation
 
-* Make sure you have node and bower installed first
+* Make sure you have node, gulp and bower installed first
 * Clone the theme-editor repo
 * Run **npm install** & **bower install** in the repo directory to install required dependencies
 

@@ -169,7 +169,7 @@ router.post('/theme/:theme_id/:folder/:template_id', function(req, res, next) {
 	
 
 	var file_save_path = path_to_repo + theme + folder_nh + '/' + template;
-	var main_sass_fp = path_to_repo + theme + '/sass/main.scss';
+	var main_sass_fp = path_to_repo + theme + '/sass/style.scss';
 	var css_file = path_to_repo + theme + '/css/style.css.liquid';
 	
 
@@ -193,7 +193,7 @@ router.post('/theme/:theme_id/:folder/:template_id', function(req, res, next) {
 
 				var q_id = "SELECT `id` FROM `theme_assets` WHERE name = " + "'" +theme + "'";
 
-				var q = "UPDATE `templates` SET `content` = " + connection.escape(result.css) + ", `updated_at` = CURRENT_TIMESTAMP WHERE (theme_asset_id = (" + q_id + ") AND template_name = " + "'style.css.liquid'" + ")";
+				var q = "UPDATE `templates` SET `content` = " + connection.escape(result.css) + ", `updated_at` = CURRENT_TIMESTAMP WHERE (theme_asset_id = (" + q_id + ") AND template_name = " + "'css/style.css.liquid'" + ")";
 
 				connection.query(q, function(err, results) {
 					// connected! (unless `err` is set)
